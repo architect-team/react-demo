@@ -1,5 +1,0 @@
-.env
-.nuxt
-node_modules
-terraform
-.gitlab-ci.yml

@@ -75,7 +75,7 @@
           "default": "architect"
         },
         "POSTGRES_DB": {
-          "default": "confirm"
+          "default": "test_database"
         }
       }
     }

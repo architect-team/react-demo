@@ -3,19 +3,17 @@ const winston = require('winston');
 const logger = winston.createLogger({
   level: 'info',
   format: winston.format.json(),
-  defaultMeta: { service: 'bouncer' },
+  defaultMeta: { service: 'backend' },
   transports: [
     new winston.transports.Console(),
-    new winston.transports.File({ filename: `${__dirname}/../logs/bouncer.log` })
+    new winston.transports.File({ filename: `${__dirname}/../logs/backend.log` })
   ]
 });
 
 const express = require("express");
 const cors = require('cors');
-const busboy = require('connect-busboy');
 
 const app = express();
-app.use(busboy());
 app.use(cors());
 
 const Sequelize = require('sequelize');
@@ -25,47 +23,33 @@ const sequelize = new Sequelize(process.env.POSTGRES_DB, process.env.POSTGRES_US
   dialect: 'postgres'
 });
 
-const Document = sequelize.define('document', {
-  result: Sequelize.JSON
+const Name = sequelize.define('name', {
+  name: Sequelize.STRING
 });
 
-app.get('/documents', async (req, res) => {
-  logger.info(`GET /document`)
-  const documents = await Document.findAll();
-  if (documents) {
-    return res.status(200).json(documents);
-  }
-  return res.status(404).json({ 'error': 'Not found' });
-});
+// app.get('/documents', async (req, res) => {
+//   logger.info(`GET /document`)
+//   const documents = await Document.findAll();
+//   if (documents) {
+//     return res.status(200).json(documents);
+//   }
+//   return res.status(404).json({ 'error': 'Not found' });
+// });
 
-app.get('/document/:id', async (req, res) => {
-  logger.info(`GET /document/${req.params.id}`)
-  const document = await Document.findByPk(req.params.id);
-  if (document) {
-    return res.status(200).json(document);
-  }
-  return res.status(404).json({ 'error': 'Not found' });
-});
+// app.get('/document/:id', async (req, res) => {
+//   logger.info(`GET /document/${req.params.id}`)
+//   const document = await Document.findByPk(req.params.id);
+//   if (document) {
+//     return res.status(200).json(document);
+//   }
+//   return res.status(404).json({ 'error': 'Not found' });
+// });
 
-app.post('/document', (req, res) => {
-  logger.info(`POST /document`);
-  let documentType = '';
-  req.pipe(req.busboy);
-  req.busboy.on('file', (fieldname, file, filename, encoding, mimetype) => {
-    documentType = filename.split('-')[0];
-    const stream = fs.createWriteStream(__dirname + filename);
-    file.pipe(stream);
-  });
-
-  req.busboy.on('finish', async () => {
-    const mock_data = {
-      result: {
-        overallScore: 100
-      }
-    };
-    const document = await Document.create(mock_data);
-    return res.status(201).json({ result: mock_data.result, id: document.id });
-  });
+app.post('/name', async (req, res) => {
+  logger.info(`POST /name`);
+  console.log(req.body.name)
+  const name = await Name.create(req.body.name);
+  return res.status(201).json(name);
 });
 
 sequelize.query(`select exists(SELECT datname FROM pg_catalog.pg_database WHERE lower(datname) = lower('${process.env.POSTGRES_DB}'));`)

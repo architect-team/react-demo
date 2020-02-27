@@ -1,7 +1,7 @@
 {
-  "name": "bouncer",
+  "name": "demo-frontend",
   "version": "0.1.0",
-  "description": "confirm bouncer",
+  "description": "demo backend application",
   "main": "src/index.js",
   "scripts": {
     "start": "node src/index.js",
@@ -13,7 +13,6 @@
   "dependencies": {
     "connect-busboy": "^0.0.2",
     "cors": "2.8.5",
-    "dd-trace": "^0.15.5",
     "express": "^4.17.1",
     "pg": "^7.12.1",
     "sequelize": "^5.21.1",
