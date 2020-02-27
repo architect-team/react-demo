@@ -1,0 +1,42 @@
+{
+  "name": "ryan-cahill/frontend",
+  "description": "test frontend service",
+  "keywords": [
+    ""
+  ],
+  "author": [
+    "ryan-cahill"
+  ],
+  "license": "MIT",
+  "dependencies": {
+    "ryan-cahill/backend": "latest"
+  },
+  "parameters": {
+    "API_HOST": {
+      "description": "api host",
+      "default": {
+        "valueFrom": {
+          "dependency": "ryan-cahill/backend:latest",
+          "value": "$HOST"
+        }
+      }
+    },
+    "API_PORT": {
+      "description": "api port",
+      "default": {
+        "valueFrom": {
+          "dependency": "ryan-cahill/backend:latest",
+          "value": "$PORT"
+        }
+      }
+    }
+  },
+  "datastores": {},
+  "notifications": [],
+  "subscriptions": {},
+  "language": "node",
+  "port": "8080",
+  "api": {
+    "type": "rest"
+  }
+}

@@ -1,0 +1,84 @@
+{
+  "name": "ryan-cahill/backend",
+  "description": "backend for test stack",
+  "keywords": [
+    ""
+  ],
+  "author": [
+    "ryan-cahill"
+  ],
+  "license": "MIT",
+  "dependencies": {},
+  "parameters": {
+    "POSTGRES_HOST": {
+      "description": "postgres host",
+      "default": {
+        "valueFrom": {
+          "datastore": "primary",
+          "value": "$HOST"
+        }
+      }
+    },
+    "POSTGRES_PORT": {
+      "description": "postgres port",
+      "default": {
+        "valueFrom": {
+          "datastore": "primary",
+          "value": "$PORT"
+        }
+      }
+    },
+    "POSTGRES_USER": {
+      "description": "postgres user",
+      "default": {
+        "valueFrom": {
+          "datastore": "primary",
+          "value": "$POSTGRES_USER"
+        }
+      }
+    },
+    "POSTGRES_PASSWORD": {
+      "description": "postgres password",
+      "default": {
+        "valueFrom": {
+          "datastore": "primary",
+          "value": "$POSTGRES_PASSWORD"
+        }
+      }
+    },
+    "POSTGRES_DB": {
+      "description": "postgres db",
+      "default": {
+        "valueFrom": {
+          "datastore": "primary",
+          "value": "$POSTGRES_DB"
+        }
+      }
+    }
+  },
+  "notifications": [],
+  "subscriptions": {},
+  "language": "node",
+  "port": "8080",
+  "api": {
+    "type": "rest"
+  },
+  "datastores": {
+    "primary": {
+      "image": "postgres:11",
+      "port": 5432,
+      "parameters": {
+        "POSTGRES_USER": {
+          "default": "postgres"
+        },
+        "POSTGRES_PASSWORD": {
+          "default": "architect"
+        },
+        "POSTGRES_DB": {
+          "default": "confirm"
+        }
+      }
+    }
+  },
+  "debug": "npm run start:dev"
+}

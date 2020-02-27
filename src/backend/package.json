@@ -1,0 +1,25 @@
+{
+  "name": "bouncer",
+  "version": "0.1.0",
+  "description": "confirm bouncer",
+  "main": "src/index.js",
+  "scripts": {
+    "start": "node src/index.js",
+    "start:dev": "nodemon -L src/index.js"
+  },
+  "keywords": [],
+  "author": "ryan-cahill",
+  "license": "ISC",
+  "dependencies": {
+    "connect-busboy": "^0.0.2",
+    "cors": "2.8.5",
+    "dd-trace": "^0.15.5",
+    "express": "^4.17.1",
+    "pg": "^7.12.1",
+    "sequelize": "^5.21.1",
+    "winston": "^3.2.1"
+  },
+  "devDependencies": {
+    "nodemon": "^1.19.1"
+  }
+}
