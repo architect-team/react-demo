@@ -17,6 +17,7 @@ class NameComponent extends React.Component {
       changed_name: process.env.REACT_APP_WORLD_TEXT,
       name_changes: []
     };
+    this.baseURL = process.env.NODE_ENV === 'development' ? '/api' : `http://${process.env.REACT_APP_API_ADDR}`;
   }
 
   async componentDidMount() {
@@ -29,8 +30,9 @@ class NameComponent extends React.Component {
 
   async post_name() {
     const res = await axios.post(
-      `/api/name`,
-      { name: this.state.changed_name }
+      `/name`,
+      { name: this.state.changed_name },
+      { baseURL: this.baseURL }
     );
     const name_changes = this.state.name_changes;
     name_changes.unshift(res.data);
@@ -43,7 +45,8 @@ class NameComponent extends React.Component {
 
   async get_names() {
     const res = await axios.get(
-      `/api/names`
+      `/names`,
+      { baseURL: this.baseURL }
     );
     return res.data;
   };
@@ -72,7 +75,7 @@ class NameComponent extends React.Component {
               </TableRow>
             </TableHead>
             <TableBody>
-              {this.state.name_changes.map(row => (
+              {(this.state.name_changes || []).map(row => (
                 <TableRow key={row.id}>
                   <TableCell component="th" scope="row">
                     {row.id}
