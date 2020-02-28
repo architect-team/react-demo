@@ -1,3 +1,3 @@
-# demo-stack
+# react-demo
 
-stripped-down version of confirm demo stack
+Architect demo React/express/postgres stack
