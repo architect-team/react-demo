@@ -12,23 +12,18 @@
     "ryan-cahill/backend": "latest"
   },
   "parameters": {
-    "REACT_APP_API_HOST": {
+    "REACT_APP_API_ADDR": {
       "description": "api host",
       "default": {
         "valueFrom": {
           "dependency": "ryan-cahill/backend:latest",
-          "value": "$HOST"
+          "value": "$HOST:$PORT"
         }
       }
     },
-    "REACT_APP_API_PORT": {
-      "description": "api port",
-      "default": {
-        "valueFrom": {
-          "dependency": "ryan-cahill/backend:latest",
-          "value": "$PORT"
-        }
-      }
+    "REACT_APP_WORLD_TEXT": {
+      "description": "greeting text on landing page",
+      "default": "world"
     }
   },
   "datastores": {},

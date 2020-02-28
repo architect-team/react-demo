@@ -16,6 +16,7 @@ const app = express();
 
 app.use(cors());
 app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
 
 const Sequelize = require('sequelize');
 const sequelize = new Sequelize(process.env.POSTGRES_DB, process.env.POSTGRES_USER, process.env.POSTGRES_PASSWORD, {
@@ -28,28 +29,19 @@ const Name = sequelize.define('name', {
   name: Sequelize.STRING
 });
 
-// app.get('/documents', async (req, res) => {
-//   logger.info(`GET /document`)
-//   const documents = await Document.findAll();
-//   if (documents) {
-//     return res.status(200).json(documents);
-//   }
-//   return res.status(404).json({ 'error': 'Not found' });
-// });
-
-// app.get('/document/:id', async (req, res) => {
-//   logger.info(`GET /document/${req.params.id}`)
-//   const document = await Document.findByPk(req.params.id);
-//   if (document) {
-//     return res.status(200).json(document);
-//   }
-//   return res.status(404).json({ 'error': 'Not found' });
-// });
+app.get('/names', async (req, res) => {
+  logger.info(`GET /names`)
+  const names = await Name.findAll();
+  if (names) {
+    return res.status(200).json(names);
+  }
+  return res.status(404).json({ 'error': 'Not found' });
+});
 
 app.post('/name', async (req, res) => {
   try {
     logger.info(`POST /name`);
-    const name = await Name.create(req.body.name);
+    const name = await Name.create({ name: req.body.name });
     return res.status(201).json(name);
   } catch (err) {
     return res.status(500);
