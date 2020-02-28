@@ -31,7 +31,11 @@ const Name = sequelize.define('name', {
 
 app.get('/names', async (req, res) => {
   logger.info(`GET /names`)
-  const names = await Name.findAll();
+  const names = await Name.findAll({
+    order: [
+      ['id', 'DESC'],
+    ]
+  });
   if (names) {
     return res.status(200).json(names);
   }

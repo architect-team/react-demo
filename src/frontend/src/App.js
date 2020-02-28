@@ -3,7 +3,6 @@ import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
 import React from 'react';
 import './App.css';
 import NameComponent from './components/NameComponent';
-import NameListComponent from './components/NameListComponent';
 import logo from './logo.svg';
 
 function App() {
@@ -21,7 +20,6 @@ function App() {
         <header className="App-header">
           <img src={logo} className="App-logo" alt="logo" />
           <NameComponent />
-          <NameListComponent />
         </header>
       </ThemeProvider>
     </div>
