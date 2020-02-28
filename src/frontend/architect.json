@@ -19,11 +19,13 @@
           "dependency": "ryan-cahill/backend:latest",
           "value": "$HOST:$PORT"
         }
-      }
+      },
+      "build_arg": true
     },
     "REACT_APP_WORLD_TEXT": {
       "description": "greeting text on landing page",
-      "default": "world"
+      "default": "world",
+      "build_arg": true
     }
   },
   "datastores": {},
