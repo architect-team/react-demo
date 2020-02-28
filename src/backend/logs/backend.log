@@ -1,0 +1,2 @@
+{"message":"Sequelize init failed\nSequelizeConnectionError: password authentication failed for user \"ryan\"","level":"error","service":"backend"}
+{"message":"Sequelize init failed\nSequelizeConnectionError: password authentication failed for user \"ryan\"","level":"error","service":"backend"}
