@@ -1,5 +1,5 @@
 {
-  "name": "ryan-cahill/frontend",
+  "name": "react-demo/frontend",
   "description": "test frontend service",
   "keywords": [
     ""
@@ -9,14 +9,14 @@
   ],
   "license": "MIT",
   "dependencies": {
-    "ryan-cahill/backend": "latest"
+    "react-demo/backend": "latest"
   },
   "parameters": {
     "REACT_APP_API_ADDR": {
       "description": "api host",
       "default": {
         "valueFrom": {
-          "dependency": "ryan-cahill/backend:latest",
+          "dependency": "react-demo/backend:latest",
           "value": "$HOST:$PORT"
         }
       },
