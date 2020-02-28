@@ -1,4 +1,3 @@
-const fs = require('fs');
 const winston = require('winston');
 const logger = winston.createLogger({
   level: 'info',
@@ -12,9 +11,11 @@ const logger = winston.createLogger({
 
 const express = require("express");
 const cors = require('cors');
-
+const bodyParser = require('body-parser');
 const app = express();
+
 app.use(cors());
+app.use(bodyParser.urlencoded({ extended: true }));
 
 const Sequelize = require('sequelize');
 const sequelize = new Sequelize(process.env.POSTGRES_DB, process.env.POSTGRES_USER, process.env.POSTGRES_PASSWORD, {
@@ -46,10 +47,13 @@ const Name = sequelize.define('name', {
 // });
 
 app.post('/name', async (req, res) => {
-  logger.info(`POST /name`);
-  console.log(req.body.name)
-  const name = await Name.create(req.body.name);
-  return res.status(201).json(name);
+  try {
+    logger.info(`POST /name`);
+    const name = await Name.create(req.body.name);
+    return res.status(201).json(name);
+  } catch (err) {
+    return res.status(500);
+  }
 });
 
 sequelize.query(`select exists(SELECT datname FROM pg_catalog.pg_database WHERE lower(datname) = lower('${process.env.POSTGRES_DB}'));`)
@@ -63,7 +67,7 @@ sequelize.query(`select exists(SELECT datname FROM pg_catalog.pg_database WHERE 
     sequelize.sync().then(function () {
       const { HOST, PORT } = process.env;
       app.listen(PORT, () => {
-        logger.info('Listening at %s:%s', HOST, PORT);
+        logger.info(`Listening at ${HOST}:${PORT}`);
       });
     }).catch(err => {
       logger.error(`Sequelize sync failed\n${err}`);

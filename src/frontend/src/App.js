@@ -8,46 +8,62 @@ import React from 'react';
 import './App.css';
 import logo from './logo.svg';
 
-function App() {
-  let changed_name = '';
-
-  const theme = createMuiTheme({
-    palette: {
-      type: 'dark',
-      primary: blue,
-      secondary: green,
-    }
-  });
-
+class NameComponent extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = { changed_name: process.env.ACCOUNT_NAME };
+    this.theme = createMuiTheme({
+      palette: {
+        type: 'dark',
+        primary: blue,
+        secondary: green,
+      }
+    });
+  }
   // TODO: save and list names of the user, starting with the user's account name from the deployment as the base case
 
-  const post_name = async () => {
-    const res = await axios.post(`${process.env.API_HOST}:${process.env.API_PORT}/name`, { name: changed_name }, { headers: { 'Content-Type': 'application/json' } });
+  async post_name() {
+    // `http://172.19.0.3:8080/name` cors issues with using docker address
+    // `${process.env.REACT_APP_API_HOST}:${process.env.REACT_APP_API_PORT}/name`
+
+    const res = await axios.post(
+      `http://172.19.0.3:${process.env.REACT_APP_API_PORT}/name`,
+      { name: this.state.changed_name }
+    );
     console.log(res);
   };
 
-  const change_name = (e) => {
-    changed_name = e.target.value;
+  change_name(e) {
+    this.setState({ changed_name: e.target.value });
   }
 
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
+  render() {
+    return (
+      <div>
         <p>
-          {JSON.stringify(process.env)}
-          Hello {process.env.API_HOST}
+          Hello {this.state.changed_name}
         </p>
         <div>
           <Grid container spacing={3}>
             <Grid item xs={12}>
-              <ThemeProvider theme={theme}>
-                <TextField id="name-text-field" label="Change name" onChange={change_name} />
-                <Button id="submit-button" variant="contained" onClick={post_name}>Change</Button>
+              <ThemeProvider theme={this.theme}>
+                <TextField id="name-text-field" label="Change name" onChange={this.change_name.bind(this)} />
+                <Button id="submit-button" variant="contained" onClick={this.post_name.bind(this)}>Change</Button>
               </ThemeProvider>
             </Grid>
           </Grid>
         </div>
+      </div>
+    );
+  }
+}
+
+function App() {
+  return (
+    <div className="App">
+      <header className="App-header">
+        <img src={logo} className="App-logo" alt="logo" />
+        <NameComponent />
       </header>
     </div>
   );

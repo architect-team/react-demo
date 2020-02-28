@@ -12,7 +12,7 @@
     "ryan-cahill/backend": "latest"
   },
   "parameters": {
-    "API_HOST": {
+    "REACT_APP_API_HOST": {
       "description": "api host",
       "default": {
         "valueFrom": {
@@ -21,7 +21,7 @@
         }
       }
     },
-    "API_PORT": {
+    "REACT_APP_API_PORT": {
       "description": "api port",
       "default": {
         "valueFrom": {
