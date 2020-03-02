@@ -1,3 +1,2 @@
 # react-demo
-
-Architect demo React/express/postgres stack
+React demo for Architect Platform
