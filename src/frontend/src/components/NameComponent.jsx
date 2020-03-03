@@ -8,23 +8,28 @@ import TableRow from '@material-ui/core/TableRow';
 import TextField from '@material-ui/core/TextField';
 import axios from 'axios';
 import moment from 'moment';
+import getConfig from 'next/config';
 import React from 'react';
 
 class NameComponent extends React.Component {
   constructor(props) {
     super(props);
+
+    const { publicRuntimeConfig } = getConfig();
+    const { REACT_APP_API_ADDR, REACT_APP_WORLD_TEXT } = publicRuntimeConfig;
+
     this.state = {
-      changed_name: process.env.REACT_APP_WORLD_TEXT,
+      changed_name: REACT_APP_WORLD_TEXT,
       name_changes: []
     };
-    this.baseURL = process.env.NODE_ENV === 'development' ? '/api' : `http://${process.env.REACT_APP_API_ADDR}`;
+    this.baseURL = `${REACT_APP_API_ADDR}`;
   }
 
   async componentDidMount() {
     const name_changes = await this.get_names();
     this.setState({ name_changes });
     if (name_changes.length) {
-      this.setState({ changed_name: name_changes[0].name })
+      this.setState({ changed_name: name_changes[0].name });
     }
   }
 
@@ -55,7 +60,7 @@ class NameComponent extends React.Component {
     return (
       <div>
         <p>
-          Hello {this.state.changed_name}
+          Hello {`${this.state.changed_name}`}
         </p>
         <div>
           <Grid container spacing={3}>
