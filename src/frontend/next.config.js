@@ -1,7 +1,8 @@
 module.exports = {
   publicRuntimeConfig: {
-    REACT_APP_API_ADDR: process.env.REACT_APP_API_ADDR,
-    REACT_APP_WORLD_TEXT: process.env.REACT_APP_WORLD_TEXT,
+    API_ADDR: process.env.API_ADDR,
+    WORLD_TEXT: process.env.WORLD_TEXT,
+    NODE_ENV: process.env.NODE_ENV,
   },
 
   webpack(config) {

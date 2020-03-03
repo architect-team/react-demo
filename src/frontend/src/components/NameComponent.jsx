@@ -16,13 +16,16 @@ class NameComponent extends React.Component {
     super(props);
 
     const { publicRuntimeConfig } = getConfig();
-    const { REACT_APP_API_ADDR, REACT_APP_WORLD_TEXT } = publicRuntimeConfig;
+    const {
+      API_ADDR,
+      WORLD_TEXT,
+      NODE_ENV } = publicRuntimeConfig;
 
     this.state = {
-      changed_name: REACT_APP_WORLD_TEXT,
+      changed_name: WORLD_TEXT,
       name_changes: []
     };
-    this.baseURL = `${REACT_APP_API_ADDR}`;
+    this.baseURL = NODE_ENV === 'development' ? `http://0.0.0.0:50001` : API_ADDR;
   }
 
   async componentDidMount() {
