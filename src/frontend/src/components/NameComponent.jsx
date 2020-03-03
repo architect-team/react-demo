@@ -19,7 +19,8 @@ class NameComponent extends React.Component {
     const {
       API_ADDR,
       WORLD_TEXT,
-      NODE_ENV } = publicRuntimeConfig;
+      NODE_ENV
+    } = publicRuntimeConfig;
 
     this.state = {
       changed_name: WORLD_TEXT,

@@ -16,15 +16,15 @@ const Home = () => (
   <ThemeProvider theme={theme}>
     <div className="container">
       <Head>
-        <title>Create Next App</title>
+        <title>React Demo</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
       <main>
-        <header className="App-header">
+        <div className="App-header">
           <img src="/logo.svg" className="App-logo" alt="logo" />
           <NameComponent />
-        </header>
+        </div>
       </main>
 
       <style jsx>{`
