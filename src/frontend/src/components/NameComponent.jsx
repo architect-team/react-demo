@@ -8,23 +8,32 @@ import TableRow from '@material-ui/core/TableRow';
 import TextField from '@material-ui/core/TextField';
 import axios from 'axios';
 import moment from 'moment';
+import getConfig from 'next/config';
 import React from 'react';
 
 class NameComponent extends React.Component {
   constructor(props) {
     super(props);
+
+    const { publicRuntimeConfig } = getConfig();
+    const {
+      API_ADDR,
+      WORLD_TEXT,
+      NODE_ENV
+    } = publicRuntimeConfig;
+
     this.state = {
-      changed_name: process.env.REACT_APP_WORLD_TEXT,
+      changed_name: WORLD_TEXT,
       name_changes: []
     };
-    this.baseURL = process.env.NODE_ENV === 'development' ? '/api' : `http://${process.env.REACT_APP_API_ADDR}`;
+    this.baseURL = NODE_ENV === 'development' ? `http://0.0.0.0:50001` : API_ADDR;
   }
 
   async componentDidMount() {
     const name_changes = await this.get_names();
     this.setState({ name_changes });
     if (name_changes.length) {
-      this.setState({ changed_name: name_changes[0].name })
+      this.setState({ changed_name: name_changes[0].name });
     }
   }
 

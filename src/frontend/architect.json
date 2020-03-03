@@ -12,20 +12,18 @@
     "react-demo/backend": "latest"
   },
   "parameters": {
-    "REACT_APP_API_ADDR": {
+    "API_ADDR": {
       "description": "api host",
       "default": {
         "valueFrom": {
           "dependency": "react-demo/backend:latest",
           "value": "$HOST:$PORT"
         }
-      },
-      "build_arg": true
+      }
     },
-    "REACT_APP_WORLD_TEXT": {
+    "WORLD_TEXT": {
       "description": "greeting text on landing page",
-      "default": "world",
-      "build_arg": true
+      "default": "world"
     }
   },
   "datastores": {},
