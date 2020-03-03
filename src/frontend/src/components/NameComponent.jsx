@@ -64,7 +64,7 @@ class NameComponent extends React.Component {
     return (
       <div>
         <p>
-          Hello {`${this.state.changed_name}`}
+          Hello {this.state.changed_name}
         </p>
         <div>
           <Grid container spacing={3}>

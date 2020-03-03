@@ -17,12 +17,12 @@ const Home = () => (
     <div className="container">
       <Head>
         <title>React Demo</title>
-        <link rel="icon" href="/favicon.ico" />
+        <link rel="icon" href="/img/favicon.ico" />
       </Head>
 
       <main>
         <div className="App-header">
-          <img src="/logo.svg" className="App-logo" alt="logo" />
+          <img src="/img/logo.svg" className="App-logo" alt="logo" />
           <NameComponent />
         </div>
       </main>
