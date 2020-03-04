@@ -39,7 +39,7 @@ class NameComponent extends React.Component {
 
   async post_name() {
     const res = await axios.post(
-      `/name`,
+      `/api/name`,
       { name: this.state.changed_name },
       { baseURL: this.baseURL }
     );
@@ -54,7 +54,7 @@ class NameComponent extends React.Component {
 
   async get_names() {
     const res = await axios.get(
-      `/names`,
+      `/api/names`,
       { baseURL: this.baseURL }
     );
     return res.data;
