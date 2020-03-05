@@ -13,7 +13,7 @@ app.prepare()
 
     server.use('/api',
       createProxyMiddleware({
-        target: `http://${process.env.API_ADDR}`,
+        target: dev ? `http://${process.env.API_ADDR}` : process.env.API_ADDR,
         pathRewrite: { '^/api': '' },
         changeOrigin: true
       })
