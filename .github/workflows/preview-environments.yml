@@ -22,7 +22,7 @@ jobs:
       - run: npm link
       - run: architect config:set log_level info
       - name: Login to Architect
-        run: architect login -u ${ARCHITECT_USERNAME} -p ${ARCHITECT_PASSWORD}
+        run: architect login -u "${ARCHITECT_USERNAME}" -p "${ARCHITECT_PASSWORD}"
       - name: Create preview environment
         run: architect env:create "${ENVIRONMENT_NAME}" --platform "preview-platform"
       - name: Deploy to preview environment
