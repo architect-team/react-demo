@@ -19,6 +19,7 @@ jobs:
         with:
           ref: 'gh-actions-test'
           repository: 'architect-team/architect-cli'
+      - run: apt-get remove golang-docker-credential-helpers
       - run: npm link
       - run: architect config:set log_level info
       - name: Login to Architect
