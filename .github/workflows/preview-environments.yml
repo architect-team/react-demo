@@ -1,0 +1,24 @@
+name: Generate preview environment
+
+on:
+  pull_request:
+    types: [opened, reopened, synchronize]
+
+env:
+  ENVIRONMENT_NAME: "${GITHUB_REPOSITORY:8}-${GITHUB_REF:11}"
+
+jobs:
+  create_environment:
+    name: Create environment
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/setup-node@v1
+        with:
+          node-version: '10.x'
+      - run: npm install -g @architect-io/cli
+      - name: Login to Architect
+        run: architect login -u ${ARCHITECT_USERNAME} -p ${ARCHITECT_PASSWORD}
+      - name: Create preview environment
+        run: architect env:create "${ENVIRONMENT_NAME}" --platform "preview-platform"
+      - name: Deploy to preview environment
+        run: architect deploy preview.env.json --environment "${ENVIRONMENT_NAME}"
