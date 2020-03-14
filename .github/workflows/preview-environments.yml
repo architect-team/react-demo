@@ -10,7 +10,7 @@ env:
 jobs:
   create_environment:
     name: Create environment
-    runs-on: ubuntu-16.04
+    runs-on: macos-latest
     steps:
       - uses: actions/setup-node@v1
         with:
