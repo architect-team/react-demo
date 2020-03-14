@@ -15,7 +15,10 @@ jobs:
       - uses: actions/setup-node@v1
         with:
           node-version: '10.x'
-      - run: npm install -g @architect-io/cli
+      - uses: actions/checkout@v2
+        with:
+          repository: 'architect-team/architect-cli'
+      - run: npm link ./architect-cli
       - run: architect config:set log_level info
       - name: Login to Architect
         run: architect login -u ${ARCHITECT_USERNAME} -p ${ARCHITECT_PASSWORD}
