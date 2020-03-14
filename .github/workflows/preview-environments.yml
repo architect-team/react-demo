@@ -18,7 +18,7 @@ jobs:
       - uses: actions/checkout@v2
         with:
           repository: 'architect-team/architect-cli'
-      - run: npm link ./architect-cli
+      - run: cd ./architect-cli && npm link && cd ..
       - run: architect config:set log_level info
       - name: Login to Architect
         run: architect login -u ${ARCHITECT_USERNAME} -p ${ARCHITECT_PASSWORD}
