@@ -19,7 +19,11 @@ jobs:
         with:
           ref: 'gh-actions-test'
           repository: 'architect-team/architect-cli'
-      - run: docker version
+      - name: Setup Docker credential helper
+        run: |
+          sudo apt install gnupg2 pass 
+          gpg2 --full-generate-key
+          gpg2 -k
       - run: npm link
       - run: architect config:set log_level info
       - name: Login to Architect
