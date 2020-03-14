@@ -22,8 +22,8 @@ jobs:
       - name: Setup Docker credential helper
         run: |
           sudo apt install gnupg2 pass 
-          sudo gpg2 --full-generate-key
-          sudo gpg2 -k
+          gpg2 --no-tty --full-generate-key
+          gpg2 --no-tty -k
       - run: npm link
       - run: architect config:set log_level info
       - name: Login to Architect
