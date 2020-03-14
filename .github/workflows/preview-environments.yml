@@ -10,7 +10,7 @@ env:
 jobs:
   create_environment:
     name: Create environment
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-16.04
     steps:
       - uses: actions/setup-node@v1
         with:
@@ -19,11 +19,6 @@ jobs:
         with:
           ref: 'gh-actions-test'
           repository: 'architect-team/architect-cli'
-      - name: Setup Docker credential helper
-        run: |
-          sudo apt install gnupg2 pass 
-          gpg2 --no-tty --full-generate-key
-          gpg2 --no-tty -k
       - run: npm link
       - run: architect config:set log_level info
       - name: Login to Architect
