@@ -32,7 +32,7 @@ jobs:
             %echo done
           EOF
           gpg2 --batch --generate-key gpg2.tmp
-          HOME=/home/docker-user pass init `gpg2 --list-secret-keys | grep uid -B 1 | head -n 1`
+          pass init `gpg2 --list-secret-keys | grep uid -B 1 | head -n 1`
       - uses: actions/checkout@v2
         with:
           ref: 'gh-actions-test'
