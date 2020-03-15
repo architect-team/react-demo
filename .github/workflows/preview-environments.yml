@@ -25,10 +25,11 @@ jobs:
       - name: Install Docker
         run: |
           apt-get update
-          apt-get remove docker docker-engine docker.io
-          apt install docker.io
-          systemctl start docker
-          systemctl enable docker
+          apt-get install apt-transport-https ca-certificates curl software-properties-common
+          curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add –
+          add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu  $(lsb_release -cs)  stable" 
+          apt-get update
+          apt-get install docker-ce
           docker --version
       - name: Login to Architect
         run: architect login -u "${{ secrets.ARCHITECT_USERNAME }}" -p "${{ secrets.ARCHITECT_PASSWORD }}"
