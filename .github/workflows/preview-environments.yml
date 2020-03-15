@@ -18,8 +18,21 @@ jobs:
       - name: Setup 'pass' as keytar secret manager
         run: |
           sudo apt install gnupg2 pass
-          gpg2 --batch --full-generate-key
-          pass init
+          cat >gpg2.tmp <<EOF
+            %echo Generating a basic OpenPGP key
+            Key-Type: default
+            Subkey-Type: default
+            Name-Real: Architect Inc
+            Name-Comment: Architect.io
+            Name-Email: david@architect.io
+            Expire-Date: 0
+            Passphrase: architect
+            # Do a commit here, so that we can later print "done" :-)
+            %commit
+            %echo done
+          EOF
+          gpg2 --batch --generate-key gpg2.tmp
+          HOME=/home/docker-user pass init `gpg2 --list-secret-keys | grep uid -B 1 | head -n 1`
       - uses: actions/checkout@v2
         with:
           ref: 'gh-actions-test'
