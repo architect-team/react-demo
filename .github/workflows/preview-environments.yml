@@ -11,23 +11,17 @@ jobs:
   create_environment:
     name: Create environment
     runs-on: ubuntu-latest
-    container:
-      image: node:10
     steps:
+      - uses: actions/setup-node@v1
+        with:
+          node-version: '10.x'
+      - name: Setup keytar
+        run: sudo apt-get install libsecret-1-dev
       - uses: actions/checkout@v2
         with:
           ref: 'gh-actions-test'
           repository: 'architect-team/architect-cli'
       - run: npm link
-      - name: Install Docker
-        run: |
-          apt-get update
-          apt-get install -y apt-transport-https ca-certificates curl software-properties-common sudo
-          curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add –
-          add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu  $(lsb_release -cs)  stable" 
-          apt-get update
-          apt-get install -y docker-ce
-          docker --version
       - name: Login to Architect
         run: architect login -u "${{ secrets.ARCHITECT_USERNAME }}" -p "${{ secrets.ARCHITECT_PASSWORD }}"
       - name: Create preview environment
