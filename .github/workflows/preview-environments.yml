@@ -18,7 +18,7 @@ jobs:
       - name: Setup 'pass' as keytar secret manager
         run: |
           sudo apt install gnupg2 pass
-          gpg2 --no-tty --full-generate-key
+          gpg2 --batch --full-generate-key
           gpg2 -k
       - uses: actions/checkout@v2
         with:
