@@ -15,10 +15,11 @@ jobs:
       - uses: actions/setup-node@v1
         with:
           node-version: '10.x'
-      - name: Installing OS deps
+      - name: Setup 'pass' as keytar secret manager
         run: |
-          sudo apt-get install libsecret-1-dev
-          sudo apt remove docker-compose
+          sudo apt install gnupg2 pass
+          gpg2 --full-generate-key
+          gpg2 -k
       - uses: actions/checkout@v2
         with:
           ref: 'gh-actions-test'
