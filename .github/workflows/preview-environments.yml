@@ -19,7 +19,7 @@ jobs:
         run: |
           sudo apt install gnupg2 pass
           gpg2 --batch --full-generate-key
-          gpg2 --list-keys
+          pass init
       - uses: actions/checkout@v2
         with:
           ref: 'gh-actions-test'
