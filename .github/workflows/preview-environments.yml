@@ -15,8 +15,10 @@ jobs:
       - uses: actions/setup-node@v1
         with:
           node-version: '10.x'
-      - name: Setup keytar
-        run: sudo apt-get install libsecret-1-dev
+      - name: Installing OS deps
+        run: |
+          sudo apt-get install libsecret-1-dev
+          sudo apt remove docker-compose
       - uses: actions/checkout@v2
         with:
           ref: 'gh-actions-test'
