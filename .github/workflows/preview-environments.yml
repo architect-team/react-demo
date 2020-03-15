@@ -14,9 +14,6 @@ jobs:
     container:
       image: node:10
     steps:
-      - uses: actions/setup-node@v1
-        with:
-          node-version: '10.x'
       - uses: actions/checkout@v2
         with:
           ref: 'gh-actions-test'
