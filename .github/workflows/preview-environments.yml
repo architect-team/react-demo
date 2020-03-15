@@ -10,7 +10,9 @@ env:
 jobs:
   create_environment:
     name: Create environment
-    runs-on: macos-latest
+    runs-on: ubuntu-latest
+    container:
+      image: node:10
     steps:
       - uses: actions/setup-node@v1
         with:
