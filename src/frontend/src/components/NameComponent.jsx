@@ -16,7 +16,9 @@ class NameComponent extends React.Component {
     super(props);
 
     const { publicRuntimeConfig } = getConfig();
-    const { WORLD_TEXT } = publicRuntimeConfig;
+    const { API_ADDR, WORLD_TEXT } = publicRuntimeConfig;
+
+    this.api = axios.create({ baseURL: API_ADDR });
 
     this.state = {
       changed_name: WORLD_TEXT,
@@ -33,10 +35,7 @@ class NameComponent extends React.Component {
   }
 
   async post_name() {
-    const res = await axios.post(
-      `/api/name`,
-      { name: this.state.changed_name }
-    );
+    const res = await this.api.post('name', { name: this.state.changed_name });
     const name_changes = this.state.name_changes;
     name_changes.unshift(res.data);
     this.setState({ name_changes });
@@ -47,9 +46,7 @@ class NameComponent extends React.Component {
   }
 
   async get_names() {
-    const res = await axios.get(
-      `/api/names`
-    );
+    const res = await this.api.get('names');
     return res.data;
   };
 
