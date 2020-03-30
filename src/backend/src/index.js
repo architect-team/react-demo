@@ -61,7 +61,10 @@ sequelize.query(`select exists(SELECT datname FROM pg_catalog.pg_database WHERE 
 
     logger.info('Database exists');
     sequelize.sync().then(function () {
-      const { HOST, PORT } = process.env;
+      const { HOST, PORT, MAIN_PORT, SECONDARY_PORT } = process.env;
+      app.listen(PORT, () => {
+        logger.info(`Listening at ${HOST}:${PORT}`);
+      });
       app.listen(PORT, () => {
         logger.info(`Listening at ${HOST}:${PORT}`);
       });

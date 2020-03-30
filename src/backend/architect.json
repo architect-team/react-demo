@@ -80,5 +80,15 @@
       }
     }
   },
+  "interfaces": {
+    "main": {
+      "description": "main port",
+      "port": "80"
+    },
+    "secondary": {
+      "description": "secondary port",
+      "port": "80"
+    }
+  },
   "debug": "npm run start:dev"
 }
