@@ -11,6 +11,14 @@ app.prepare()
   .then(() => {
     const server = express();
 
+    server.use('/api',
+      createProxyMiddleware({
+        target: dev ? `http://${process.env.API_ADDR}` : process.env.API_ADDR,
+        pathRewrite: { '^/api': '' },
+        changeOrigin: true
+      })
+    );
+
     server.all('*', (req, res) => {
       return handle(req, res);
     });

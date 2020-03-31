@@ -83,11 +83,11 @@
   "interfaces": {
     "main": {
       "description": "main port",
-      "port": "80"
+      "port": "8080"
     },
     "secondary": {
       "description": "secondary port",
-      "port": "80"
+      "port": "8081"
     }
   },
   "debug": "npm run start:dev"

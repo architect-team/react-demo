@@ -18,7 +18,7 @@
         "valueFrom": {
           "dependency": "react-demo/backend:latest",
           "interface": "main",
-          "value": "http://$MAIN_EXTERNAL_HOST:$MAIN_EXTERNAL_PORT"
+          "value": "$MAIN_HOST:$MAIN_PORT"
         }
       }
     },
