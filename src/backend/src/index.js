@@ -22,7 +22,14 @@ const Sequelize = require('sequelize');
 const sequelize = new Sequelize(process.env.POSTGRES_DB, process.env.POSTGRES_USER, process.env.POSTGRES_PASSWORD, {
   host: process.env.POSTGRES_HOST,
   port: process.env.POSTGRES_PORT,
-  dialect: 'postgres'
+  dialect: 'postgres',
+  retry: {
+    max: 3, // maximum amount of tries
+    timeout: 10000, // throw if no response or error within millisecond timeout, default: undefined,
+    match: [ // Must match error signature (ala bluebird catch) to continue
+      Sequelize.ConnectionError,
+    ],
+  }
 });
 
 const Name = sequelize.define('name', {
