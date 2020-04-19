@@ -54,12 +54,19 @@
           "value": "$POSTGRES_DB"
         }
       }
+    },
+    "PORT": {
+      "default": "$MAIN_INTERNAL_PORT"
     }
   },
   "notifications": [],
   "subscriptions": {},
   "language": "node",
-  "port": "8080",
+  "interfaces": {
+    "main": {
+      "port": "8080"
+    }
+  },
   "api": {
     "type": "rest"
   },
