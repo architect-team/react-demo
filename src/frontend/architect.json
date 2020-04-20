@@ -13,11 +13,11 @@
   },
   "parameters": {
     "API_ADDR": {
-      "description": "api host",
       "default": {
         "valueFrom": {
           "dependency": "react-demo/backend:latest",
-          "value": "http://$MAIN_EXTERNAL_HOST:$MAIN_EXTERNAL_PORT"
+          "interface": "main",
+          "value": "http://$EXTERNAL_HOST:$EXTERNAL_PORT"
         }
       }
     },
@@ -26,7 +26,13 @@
       "default": "world"
     },
     "PORT": {
-      "default": "$MAIN_INTERNAL_PORT"
+      "default": {
+        "valueFrom": {
+          "value": "$INTERNAL_PORT",
+          "interface": "main",
+          "self": true
+        }
+      }
     }
   },
   "datastores": {},
