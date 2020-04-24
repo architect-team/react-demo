@@ -59,8 +59,7 @@
       "default": {
         "valueFrom": {
           "value": "$INTERNAL_PORT",
-          "interface": "main",
-          "self": true
+          "interface": "main"
         }
       }
     }
