@@ -54,23 +54,13 @@
           "value": "$POSTGRES_DB"
         }
       }
-    },
-    "PORT": {
-      "default": {
-        "valueFrom": {
-          "value": "$INTERNAL_PORT",
-          "interface": "main"
-        }
-      }
     }
   },
   "notifications": [],
   "subscriptions": {},
   "language": "node",
   "interfaces": {
-    "main": {
-      "port": "8080"
-    }
+    "main": 8080
   },
   "api": {
     "type": "rest"
@@ -92,5 +82,12 @@
       }
     }
   },
-  "debug": "npm run start:dev"
+  "debug": {
+    "command": "npm run start:dev",
+    "volumes": {
+      "src": {
+        "mount_path": "/usr/src/app/src"
+      }
+    }
+  }
 }

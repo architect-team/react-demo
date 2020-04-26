@@ -16,7 +16,6 @@
       "default": {
         "valueFrom": {
           "dependency": "react-demo/backend:latest",
-          "interface": "main",
           "value": "https://$EXTERNAL_HOST:$EXTERNAL_PORT"
         }
       }
@@ -24,14 +23,6 @@
     "WORLD_TEXT": {
       "description": "greeting text on landing page",
       "default": "world"
-    },
-    "PORT": {
-      "default": {
-        "valueFrom": {
-          "value": "$INTERNAL_PORT",
-          "interface": "main"
-        }
-      }
     }
   },
   "datastores": {},
@@ -39,11 +30,17 @@
   "subscriptions": {},
   "language": "node",
   "interfaces": {
-    "main": {
-      "port": "8080"
-    }
+    "main": 8080
   },
   "api": {
     "type": "rest"
+  },
+  "debug": {
+    "command": "npm run dev",
+    "volumes": {
+      "src": {
+        "mount_path": "/usr/src/app/src"
+      }
+    }
   }
 }
