@@ -13,7 +13,6 @@
   },
   "parameters": {
     "API_ADDR": {
-      "description": "api host",
       "default": {
         "valueFrom": {
           "dependency": "react-demo/backend:latest",
@@ -30,8 +29,18 @@
   "notifications": [],
   "subscriptions": {},
   "language": "node",
-  "port": "8080",
+  "interfaces": {
+    "main": 8080
+  },
   "api": {
     "type": "rest"
+  },
+  "debug": {
+    "command": "npm run dev",
+    "volumes": {
+      "src": {
+        "mount_path": "/usr/src/app/src"
+      }
+    }
   }
 }

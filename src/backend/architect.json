@@ -59,7 +59,9 @@
   "notifications": [],
   "subscriptions": {},
   "language": "node",
-  "port": "8080",
+  "interfaces": {
+    "main": 8080
+  },
   "api": {
     "type": "rest"
   },
@@ -80,5 +82,12 @@
       }
     }
   },
-  "debug": "npm run start:dev"
+  "debug": {
+    "command": "npm run start:dev",
+    "volumes": {
+      "src": {
+        "mount_path": "/usr/src/app/src"
+      }
+    }
+  }
 }
