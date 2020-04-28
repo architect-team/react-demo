@@ -38,8 +38,7 @@ class NameComponent extends React.Component {
     const res = await axios.post(
       `/api/name`,
       { name: this.state.changed_name }
-    );
-    const name_changes = this.state.name_changes;
+    ); const name_changes = this.state.name_changes;
     name_changes.unshift(res.data);
     this.setState({ name_changes });
   };

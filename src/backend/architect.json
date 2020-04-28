@@ -60,7 +60,8 @@
   "subscriptions": {},
   "language": "node",
   "interfaces": {
-    "main": 8080
+    "main": 8080,
+    "secondary": 8081
   },
   "api": {
     "type": "rest"
