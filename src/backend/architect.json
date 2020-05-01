@@ -4,10 +4,7 @@
   "keywords": [
     ""
   ],
-  "author": [
-    "ryan-cahill"
-  ],
-  "license": "MIT",
+  "author": "Architect.io",
   "dependencies": {},
   "parameters": {
     "POSTGRES_HOST": {
