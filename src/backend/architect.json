@@ -81,9 +81,11 @@
   },
   "debug": {
     "command": "npm run start:dev",
+    "dockerfile": "Dockerfile.dev",
     "volumes": {
       "src": {
-        "mount_path": "/usr/src/app/src"
+        "mount_path": "/usr/src/app/src",
+        "host_path": "./src"
       }
     }
   }
