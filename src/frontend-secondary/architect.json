@@ -1,21 +1,18 @@
 {
-  "name": "react-demo/frontend-secondary",
+  "name": "ryan-public-services/frontend-secondary",
   "description": "test frontend service",
   "keywords": [
     ""
   ],
-  "author": [
-    "ryan-cahill"
-  ],
-  "license": "MIT",
+  "author": "ryan-cahill",
   "dependencies": {
-    "react-demo/backend": "latest"
+    "ryan-public-services/backend": "latest"
   },
   "parameters": {
     "API_ADDR": {
       "default": {
         "valueFrom": {
-          "dependency": "react-demo/backend:latest",
+          "dependency": "ryan-public-services/backend:latest",
           "interface": "secondary",
           "value": "http://$HOST:$PORT"
         }
@@ -40,7 +37,8 @@
     "command": "npm run dev",
     "volumes": {
       "src": {
-        "mount_path": "/usr/src/app/src"
+        "mount_path": "/usr/src/app/src",
+        "host_path": "./src"
       }
     }
   }

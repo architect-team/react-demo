@@ -1,13 +1,10 @@
 {
-  "name": "react-demo/backend",
+  "name": "ryan-public-services/backend",
   "description": "backend for test stack",
   "keywords": [
     ""
   ],
-  "author": [
-    "ryan-cahill"
-  ],
-  "license": "MIT",
+  "author": "ryan-cahill",
   "dependencies": {},
   "parameters": {
     "POSTGRES_HOST": {
@@ -87,7 +84,8 @@
     "command": "npm run start:dev",
     "volumes": {
       "src": {
-        "mount_path": "/usr/src/app/src"
+        "mount_path": "/usr/src/app/src",
+        "host_path": "./src"
       }
     }
   }
